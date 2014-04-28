@@ -7,7 +7,8 @@
 	<script src="script.js"></script>
 </head>
 <?php
-	include('header.php');
+    $titre='FREDI';
+    include('header.php');
 ?>
 <body>
     <form action="saveBordereau.php" method="POST">

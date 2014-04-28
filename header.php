@@ -8,13 +8,18 @@
         <script src="jquery.js"></script>
 </head>
 <body>
-<div id="images">
-    <img src="salle_armes.png" class="header_img" />
-    <img src="m2l.png" class="header_img" />
-    <?php
-        if(($titre!=='Connexion') && ($titre!=='Inscription')) {
-            echo '<input id="boutonLogout" type="button" onclick="location.href=\'logout.php\'" value="Déconnexion" />';
-        }
-    ?>
-    <hr>
-</div>
+    <div id="images">
+        <img src="salle_armes.png" class="header_img" />
+        <img src="m2l.png" class="header_img" />
+        <?php
+            if(($titre!=='Connexion') && ($titre!=='Inscription')) {
+                echo '  <input id="boutonLogout" type="button" onclick="location.href=\'logout.php\'" value="Déconnexion" />
+                        <input type="button" id="boutonHome" onclick="location.href=\'site.php\'" value="Accueil" />';
+
+
+            }
+        ?>
+        <hr>
+    </div>
+</body>
+</html>

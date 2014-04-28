@@ -19,8 +19,8 @@
     while($info = $rs->fetch_object()) {
         $Nom=$info->nom;
         $Prenom=$info->prenom;
-        $Adresse=$info->rue;
-        $CodeP=$info->cp;
+        $Adresse=$info->adresse;
+        $CodeP=$info->codepostal;
         $Ville=$info->ville;
         $Club="lol";
         $Nlicence="";
@@ -30,6 +30,7 @@
     echo'
         <h1 align="center">Information</h1>
         <div id="VOIRINFO">
+            <form action="modifInfo.php" method="POST">
                 <table align="center" id="TableEnreg2">
                         <tr>
                                 <td>Nom</td>
@@ -52,7 +53,7 @@
                         <tr>
                                 <td>Code Postal</td>
                                 <td>
-                                        <input class="param" name="codepostale" value="'.$CodeP.'">
+                                        <input class="param" name="codepostal" value="'.$CodeP.'">
                                 </td>
                         </tr>
                         <tr>
@@ -87,4 +88,5 @@
                                 </td>
                         </tr>
                 </table>
+            </form>
         </div>';
