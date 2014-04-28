@@ -22,76 +22,69 @@
         $Adresse=$info->adresse;
         $CodeP=$info->codepostal;
         $Ville=$info->ville;
-        $Club="lol";
+        $Club="";
         $Nlicence="";
         $NLigue="";
     }
         
     echo'
-        <h1 align="center">Information</h1>
+        <h1 align="center">Informations personnelles</h1>
         <div id="VOIRINFO">
-            <form action="modifInfo.php" method="POST">
-                <table align="center" id="TableEnreg2">
-                        <tr>
-                                <td>Nom</td>
-                                <td>
-                                        <input class="param" type="text" name="nom" value="'.$Nom.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>Prenom</td>
-                                <td>
-                                        <input class="param" type="text" name="prenom" value="'.$Prenom.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>Adresse</td>
-                                <td>
-                                        <input class="param" name="adresse" value="'.$Adresse.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>Code Postal</td>
-                                <td>
-                                        <input class="param" name="codepostal" value="'.$CodeP.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>Ville</td>
-                                <td>
-                                        <input class="param" name="ville" value="'.$Ville.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>Club</td>
-                                <td>
-                                        <input class="param" type="text" name="club" value="'.$Club.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>N° Licence</td>
-                                <td>
-                                        <input class="param" type="text" name="licence" value="'.$Nlicence.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>N° Ligue</td>
-                                <td>
-                                        <input class="param" type="text" name="ligue" value="'.$NLigue.'">
-                                </td>
-                        </tr>
-                        <tr>
-                                <td>
-                                </td>
-                                <td>
-                                        <input type="submit" value="Enregister les modifications"/>
-                                </td>
-                        </tr>
-                </table>
-            </form>
+            <table align="center" id="TableEnreg2">
+                    <tr>
+                            <td>Nom</td>
+                            <td>
+                                    <input class="param" type="text" id="nom" value="'.$Nom.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Prenom</td>
+                            <td>
+                                    <input class="param" type="text" id="prenom" value="'.$Prenom.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Adresse</td>
+                            <td>
+                                    <input class="param" id="adresse" value="'.$Adresse.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Code Postal</td>
+                            <td>
+                                    <input class="param" id="codepostal" value="'.$CodeP.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Ville</td>
+                            <td>
+                                    <input class="param" id="ville" value="'.$Ville.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>Club</td>
+                            <td>
+                                    <input class="param" type="text" id="club" value="'.$Club.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>N° Licence</td>
+                            <td>
+                                    <input class="param" type="text" id="licence" value="'.$Nlicence.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>N° Ligue</td>
+                            <td>
+                                    <input class="param" type="text" id="ligue" value="'.$NLigue.'">
+                            </td>
+                    </tr>
+                    <tr>
+                            <td>
+                            </td>
+                            <td>
+                                    <input type="button" onclick="modifInfo()" value="Enregister les modifications"/>
+                            </td>
+                    </tr>
+            </table>
         </div>';
-    //TROLOLO
-//TROLOLO
-    //TROLOLOTROLOLO
-    
-    //LOL ELOI

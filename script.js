@@ -96,3 +96,31 @@ function addLine(){
 		$(this).closest("tr").remove();
 	});
 }
+
+function modifInfo(){
+        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom').value;
+        var adresse = document.getElementById('adresse').value;
+        var codepostal = document.getElementById('codepostal').value;
+        var ville = document.getElementById('ville').value;
+        var club = document.getElementById('club').value;
+        
+        $.ajax({ 
+            url: 'modifInfo.php',
+            data:   { 
+                        nom: nom,
+                        prenom: prenom,
+                        adresse: adresse,
+                        codepostal: codepostal,
+                        ville: ville,
+                        club: club,
+                    },
+            type: 'POST',
+            success: function(response){
+               if(response=="ok") {
+                   alert('Modifications effectuées.');
+                   window.location.replace('site.php');
+               }
+            }
+        });
+}

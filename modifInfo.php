@@ -23,7 +23,6 @@
                 ville='".$ville."'
             WHERE adressemail = '".$mail."'; ";
     
-    var_dump($SQL);
-    
     $rs=$cnx->query($SQL);
+    echo 'ok';
 ?>
