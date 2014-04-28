@@ -14,10 +14,18 @@
 		
         $pdf =new FPDI();
         $pdf->AddPage();
-
-        //Set the source PDF file
-        $pagecount = $pdf->setSourceFile("Bordereau_vide.pdf");
-
+        
+        $nbPages = sizeof($_POST["totalFrais"]);
+        
+        if($nbPages <= 3){
+            //Set the source PDF file
+            $pagecount = $pdf->setSourceFile("Bordereau_vide.pdf");
+        } else if(($nbPages >3) && ($nbPages <= 6)) {
+            $pagecount = $pdf->setSourceFile("Bordereau_vide2.pdf");
+        } else if(($nbPages >6) && ($nbPages <= 9)) {
+            $pagecount = $pdf->setSourceFile("Bordereau_vide3.pdf");
+        }
+        
         //Import the first page of the file
         $tpl = $pdf->importPage(1);
         //Use this page as template

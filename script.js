@@ -78,7 +78,12 @@ function passRequest(){
 }
 
 function addLine(){
-    //var i = $('#tableauBordereau tr').length - 1;
+    var nbLignes = $('#tableauBordereau tr').length;
+    if(nbLignes == 11){ //9 'vraies' lignes + la première et la dernière, sur lesquelles on n'entre pas d'infos
+        alert('Vous avez atteint le nombre maximum de lignes !\nVeuillez en supprimer avant d\'en ajouter à nouveau.');
+        return;
+    }
+    
     $('#tableauBordereau tr:last').prev().after( '<tr>'+
                                                     '<td><input type="text" class="inputTableau" name="dateFrais[]"></td>'+
                                                     '<td><input type="text" class="inputTableau" name="motifFrais[]"></td>'+
@@ -92,9 +97,9 @@ function addLine(){
                                                     '<td><input type="button" class="deleteButton"/></td>'+
                                                  '</tr>');
 												 
-	$('.deleteButton').click(function(){
-		$(this).closest("tr").remove();
-	});
+    $('.deleteButton').click(function(){
+            $(this).closest("tr").remove();
+    });
 }
 
 function modifInfo(){
