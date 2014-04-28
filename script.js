@@ -39,9 +39,20 @@ function connexion(){
 		alert('Veuillez entrer votre mot de passe !');
 		return false;
 	}
-	
-	window.location.replace('site.php');
-	document.forms["connect"].submit();
+        
+        $.ajax({url: 'checkLogin.php',
+                data: {email: email, mdp : mdp},
+                type: 'POST',
+                success: function(response){
+                    if(response == "ok"){
+                        window.location.replace('site.php');
+                    } else {
+                        alert('Identifiants de connexion incorrects');
+                        document.getElementsByName('mdp')[0].value = '';
+                        return;
+                    }
+                }
+        })
 }
 
 function passRequest(){
@@ -69,15 +80,15 @@ function passRequest(){
 function addLine(){
     //var i = $('#tableauBordereau tr').length - 1;
     $('#tableauBordereau tr:last').prev().after( '<tr>'+
-                                                    '<td contenteditable name="dateFrais[]"></td>'+
-                                                    '<td contenteditable name="motifFrais[]"></td>'+
-                                                    '<td contenteditable name="trajetFrais[]"></td>'+
-                                                    '<td contenteditable name="kmFrais[]"></td>'+
-                                                    '<td contenteditable name="coutFrais[]"></td>'+
-                                                    '<td contenteditable name="peagesFrais[]"></td>'+
-                                                    '<td contenteditable name="repasFrais[]"></td>'+
-                                                    '<td contenteditable name="hebergementFrais[]"></td>'+
-                                                    '<td contenteditable name="totalFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="dateFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="motifFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="trajetFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="kmFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="coutFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="peagesFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="repasFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="hebergementFrais[]"></td>'+
+                                                    '<td><input type="text" class="inputTableau" name="totalFrais[]"></td>'+
                                                     '<td><input type="button" class="deleteButton"/></td>'+
                                                  '</tr>');
 												 
@@ -85,4 +96,3 @@ function addLine(){
 		$(this).closest("tr").remove();
 	});
 }
-

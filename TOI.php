@@ -1,6 +1,7 @@
 ﻿<body>
 <?php
-	include('header.php');
+    $titre='Inscription';
+    include('header.php');
 ?>
 <h1 align="center">Inscription</h1>
 <div id="FormEnreg1">

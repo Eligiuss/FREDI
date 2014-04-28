@@ -64,15 +64,15 @@
                 </tr>
 				
 				<tr>
-					<td contenteditable name="dateFrais[]"></td>
-					<td contenteditable name="motifFrais[]"></td>
-					<td contenteditable name="trajetFrais[]"></td>
-					<td contenteditable name="kmFrais[]"></td>
-					<td contenteditable name="coutFrais[]"></td>
-					<td contenteditable name="peagesFrais[]"></td>
-					<td contenteditable name="repasFrais[]"></td>
-					<td contenteditable name="hebergementFrais[]"></td>
-					<td contenteditable name="totalFrais[]"></td>
+					<td><input class="inputTableau" type="text" name="dateFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="motifFrais[]" maxlength="22"></td>
+					<td><input class="inputTableau" type="text" name="trajetFrais[]" maxlength="20"></td>
+					<td><input class="inputTableau" type="text" name="kmFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="coutFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="peagesFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="repasFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="hebergementFrais[]" maxlength="10"></td>
+					<td><input class="inputTableau" type="text" name="totalFrais[]" maxlength="10"></td>
 					<td><input type="button" class="deleteButton"/></td>
 				 </tr>
                 

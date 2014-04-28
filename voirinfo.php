@@ -1,7 +1,9 @@
 <?php
+    $titre='FREDI';
     include('header.php');
-
-    $Mail=$_GET["login"];
+    
+    session_start();
+    $Mail=$_SESSION["login"];
 
     $hote='127.0.0.1';
     $user='root';
@@ -9,20 +11,18 @@
     $database='ppe';
     $cnx=new mysqli($hote,$user,$passwd,$database);
 
-    $SQL = "SELECT * FROM demandeurs WHERE 'adressemail'= '".$Mail."'";
+    $SQL = "SELECT * FROM demandeurs WHERE adressemail= '".$Mail."'";
     $rs=$cnx->query($SQL);
 
-    var_dump($SQL); 
-    var_dump($rs); 
-
-    while($info=$rs->fetch_object())
-    {
-        $Nom="$info->nom";
-        $Prenom="$info->prenom";
-        $Adresse="$info->rue";
-        $CodeP="$info->cp";
-        $Ville="$info->ville";
-        $Club=" ";
+    //var_dump($SQL); 
+    
+    while($info = $rs->fetch_object()) {
+        $Nom=$info->nom;
+        $Prenom=$info->prenom;
+        $Adresse=$info->rue;
+        $CodeP=$info->cp;
+        $Ville=$info->ville;
+        $Club="lol";
         $Nlicence="";
         $NLigue="";
     }

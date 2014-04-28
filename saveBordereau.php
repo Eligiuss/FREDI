@@ -12,22 +12,6 @@
         $enfants = $_POST["enfants"];
         $annee = $_POST["anneeCivile"];
 		
-		var_dump($_POST["dateFrais"][0]);
-		
-		/*for($i=0; $i<=sizeof($_POST["totalFrais"]); $i++){ //a test
-			$dateFrais[] = $_POST["dateFrais"][$i];
-			$motifFrais[] = $_POST["motifFrais"][$i];
-			$trajetFrais[] = $_POST["trajetFrais"][$i];
-			$kmFrais[] = $_POST["kmFrais"][$i];
-			$coutFrais[] = $_POST["coutFrais"][$i];
-			$peagesFrais[] = $_POST["peagesFrais"][$i];
-			$repasFrais[] = $_POST["repasFrais"][$i];
-			$hebergementFrais[] = $_POST["hebergementFrais"][$i];
-			$totalFrais[] = $_POST["totalFrais"][$i];
-			var_dump($totalfrais);
-		}*/
-		
-        
         $pdf =new FPDI();
         $pdf->AddPage();
 
@@ -53,6 +37,33 @@
         $pdf->Text(65, 184, $total);
         $pdf->Text(91, 204, $lieu);
         $pdf->Text(127, 204, $date);
+        
+        $hauteur = 128;
+        
+        for($i=0; $i<sizeof($_POST["totalFrais"]); $i++){
+                $dateFrais[] = $_POST["dateFrais"][$i];
+                $motifFrais[] = $_POST["motifFrais"][$i];
+                $trajetFrais[] = $_POST["trajetFrais"][$i];
+                $kmFrais[] = $_POST["kmFrais"][$i];
+                $coutFrais[] = $_POST["coutFrais"][$i];
+                $peagesFrais[] = $_POST["peagesFrais"][$i];
+                $repasFrais[] = $_POST["repasFrais"][$i];
+                $hebergementFrais[] = $_POST["hebergementFrais"][$i];
+                $totalFrais[] = $_POST["totalFrais"][$i];
+                
+                $pdf->SetFont('Arial','I',7);
+                $pdf->Text(12,$hauteur,$dateFrais[$i]);
+                $pdf->Text(29,$hauteur,$motifFrais[$i]);
+                $pdf->Text(61,$hauteur,$trajetFrais[$i]);
+                $pdf->Text(91,$hauteur,$kmFrais[$i]);
+                $pdf->Text(109,$hauteur,$coutFrais[$i]);
+                $pdf->Text(127,$hauteur,$peagesFrais[$i]);
+                $pdf->Text(145,$hauteur,$repasFrais[$i]);
+                $pdf->Text(163,$hauteur,$hebergementFrais[$i]);
+                $pdf->Text(181,$hauteur,$totalFrais[$i]);
+                
+                $hauteur = $hauteur + 7;
+        }
 
         $pdf->Output();
     } else {

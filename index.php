@@ -7,13 +7,14 @@
 	<script src="jquery.js"></script>
 </head>
 <?php
+        $titre='Connexion';
 	include('header.php');
 ?>
 <h1 align="center">Connexion</h1>
 <body>
 	<div>
 		<form method="POST" id="connect" action="site.php">
-		<table id="Connexion" align="center">
+		<table id="connexion" align="center">
 			<tr>
 				<td>
 					E-mail
