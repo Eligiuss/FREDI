@@ -1,1 +1,0 @@
-﻿try hard de bosser
