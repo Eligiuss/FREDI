@@ -1,0 +1,173 @@
+body{
+	font-family:calibri;
+}
+
+#FormEnreg{
+	font-family:calibri;
+}
+	
+#connexion{
+	border-width:1px;
+	border-style:solid;
+	padding:5px;
+}
+	
+#TableEnreg1{
+	border-width:1px;
+	border-style:solid;
+	padding:5px;
+}
+
+.param{
+	width:200px;
+}
+
+#TableEnreg2{
+	border-width:1px;
+	border-style:solid;
+	padding:5px;
+}
+
+#ValiderEnreg{
+
+}
+
+#confirm{
+	width:200px;
+}
+
+.header_img{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 75px; 
+}
+
+#images{
+    text-align:center;
+}
+
+h5{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#anneeCivile{
+    border: 0px; 
+    height:25px; 
+    width: 20%; 
+    padding-left:10px; 
+    padding-right:10px; 
+    background-color:#C3FFCE;
+}
+
+#container{
+    width:900px;
+    margin:0 auto;
+    border:2px solid #aaaaaa;
+    padding:15px;
+    margin-top:30px;
+}
+
+.newBordereauText{
+    border: 0px; 
+    height:25px; 
+    width: 95%; 
+    padding-left:10px; 
+    padding-right:10px; 
+    background-color:#C3FFCE;
+}
+
+#tableauBordereau{
+    width:95%;
+    padding:4px;
+    border:1px solid #aaaaaa;
+    border-collapse: collapse;
+}
+
+#tableauBordereau td{
+    border:1px solid black;
+    text-align:center
+}
+
+#totalDons{
+    border: 0px; 
+    height:25px; 
+    width: 10%; 
+    padding-left:10px; 
+    padding-right:10px; 
+    background-color:#C3FFCE;
+}
+
+#enfants{
+    background-color:#C3FFCE;
+    border:0px;
+    width:97%;
+}
+
+.date_lieu{
+    border: 0px; 
+    height:25px; 
+    width: 10%; 
+    padding-left:10px; 
+    padding-right:10px; 
+    background-color:#C3FFCE;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+#signature{
+    border: 0px; 
+    height:25px; 
+    width: 20%; 
+    padding-left:10px; 
+    padding-right:10px; 
+    background-color:#C3FFCE;
+}
+
+.center{
+    text-align:center;
+}
+
+.deleteButton{
+    background-image: url("DeleteButton.png");
+}
+
+.inputTableau{
+    width:92%;
+    border:0;
+    font-size:12px;
+}
+
+.boutonMenu{
+    border-width: 1px;
+    border-radius:7px;
+    font-size:16px;
+    padding:10px;
+    width:350px;
+    background-color:#BFD8FF;
+}
+
+#boutonLogout{
+    border-width: 1px;
+    border-radius:7px;
+    font-size:14px;
+    padding:6px;
+    width:100px;
+    background-color: #DDDDDD;
+    float:right;
+}
+
+#boutonHome{
+    border-width: 1px;
+    border-radius:7px;
+    font-size:14px;
+    padding:6px;
+    width:100px;
+    background-color:#DDDDDD;
+    float:left;
+}
+
+a{
+    text-decoration: none;
+}
