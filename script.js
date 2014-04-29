@@ -137,7 +137,7 @@ function creerLigue(){
         var president = document.getElementById('president').value;
         
         $.ajax({ 
-            url: 'enrLigue.php',
+            url: 'enrligue.php',
             data:   { 
                         numero: numero,
                         nom: nom,
