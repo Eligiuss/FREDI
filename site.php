@@ -12,9 +12,11 @@
         <a href="bordereau.php">
             <input class="boutonMenu" type="button" value="Ouvrir un nouveau bordereau"/>
         </a>
+        <br/><br/>
         <a href="voirinfo.php" >
             <input class="boutonMenu" type="submit" value="Modifier/voir ses informations personnelles"/>
         </a>
+        <br/><br/>
         <?php
             if($_SESSION['login']=="admin")
             {

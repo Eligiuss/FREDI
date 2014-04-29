@@ -9,7 +9,7 @@
         if($_SESSION['login']=="admin")
         {
             echo'
-            <a href="creatligue.php" >
+            <a href="creerLigue.php" >
                 <input class="boutonMenu" type="submit" value="Création d\'une ligue"/>
             </a>';
         }

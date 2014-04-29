@@ -9,13 +9,13 @@
         if($_SESSION['login']=="admin")
         {
             echo'
-                <h1 align="center">Crétion d\'une nouvelle ligue</h1>
+                <h1 align="center">Création d\'une nouvelle ligue</h1>
                 <div id="Creatligue">
                     <table align="center" id="TableEnreg2">
                             <tr>
                                     <td>N°</td>
                                     <td>
-                                            <input class="param" type="text" id="numéro" value="">
+                                            <input class="param" type="text" id="numero" value="">
                                     </td>
                             </tr>
                             <tr>
@@ -33,12 +33,12 @@
                             <tr>
                                     <td>Président</td>
                                     <td>
-                                            <input class="param" id="président" value="">
+                                            <input class="param" id="president" value="">
                                     </td>
                             </tr>
-
+                                    <td></td>
                                     <td>
-                                            <input type="button" onclick="Creatligue()" value="Créer la ligue"/>
+                                            <input type="button" onclick="creerLigue()" value="Créer la ligue"/>
                                     </td>
                             </tr>
                     </table>

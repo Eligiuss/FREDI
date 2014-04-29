@@ -1,5 +1,4 @@
 <?php 
-
     if( (isset($_POST['email'])) && (isset($_POST['mdp'])) ) {
         $login = $_POST['email'];
         $mdp = $_POST['mdp'];

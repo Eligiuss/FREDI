@@ -130,25 +130,29 @@ function modifInfo(){
         });
 }
 
-function Creatligue(){
-        var numéro = document.getElementById('numéro').value;
+function creerLigue(){
+        var numero = document.getElementById('numero').value;
         var nom = document.getElementById('nom').value;
         var sigle = document.getElementById('sigle').value;
-        var président = document.getElementById('président').value;
+        var president = document.getElementById('president').value;
         
         $.ajax({ 
-            url: 'enrligue.php',
+            url: 'enrLigue.php',
             data:   { 
-                        numéro: numéro,
+                        numero: numero,
                         nom: nom,
                         sigle: sigle,
-                        président: président
+                        president: president
                     },
             type: 'POST',
             success: function(response){
-               if(response=="ok") {
-                   alert('Création effectuées.');
+               if(response=='ok') {
+                   alert('Création effectuée.');
                    window.location.replace('site.php');
+               } else if (response=='existant') {
+                   alert('Une ligue existe déjà avec ce numéro.');
+                   document.getElementById('numero').value='';
+                   return;
                }
             }
         });
