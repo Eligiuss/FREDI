@@ -7,13 +7,13 @@
     
     session_start();
     
-    $numéro = $_POST["numéro"];
+    $numero = $_POST["numero"];
     $nom = $_POST["nom"];
     $sigle = $_POST["sigle"];
-    $président = $_POST["président"];
+    $president = $_POST["president"];
     
-    $SQL = "INSERT INTO ligues(n°, Nom, sigle, président) VALUES('".$numéro."', '".$nom."', '".$sigle."', '".$président."')";
+    $SQL = "INSERT INTO ligues(numero, nom, sigle, president) VALUES('".$numéro."', '".$nom."', '".$sigle."', '".$président."')";
     
-//    $rs=$cnx->query($SQL);
-//    echo 'ok';
+   $rs=$cnx->query($SQL);
+   echo 'ok';
 ?>
