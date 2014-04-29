@@ -15,5 +15,14 @@
         <a href="voirinfo.php" >
             <input class="boutonMenu" type="submit" value="Modifier/voir ses informations personnelles"/>
         </a>
+        <?php
+            if($_SESSION['login']=="admin")
+            {
+                echo'
+                <a href="ligue.php" >
+                    <input class="boutonMenu" type="submit" value="Gestion des ligues"/>
+                </a>';
+            }
+        ?>
     </div>
 </html>

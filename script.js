@@ -129,3 +129,27 @@ function modifInfo(){
             }
         });
 }
+
+function Creatligue(){
+        var numéro = document.getElementById('numéro').value;
+        var nom = document.getElementById('nom').value;
+        var sigle = document.getElementById('sigle').value;
+        var président = document.getElementById('président').value;
+        
+        $.ajax({ 
+            url: 'enrligue.php',
+            data:   { 
+                        numéro: numéro,
+                        nom: nom,
+                        sigle: sigle,
+                        président: président
+                    },
+            type: 'POST',
+            success: function(response){
+               if(response=="ok") {
+                   alert('Création effectuées.');
+                   window.location.replace('site.php');
+               }
+            }
+        });
+}
