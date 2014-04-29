@@ -12,7 +12,7 @@
     $sigle = $_POST["sigle"];
     $president = $_POST["president"];
     
-    $SQL = "INSERT INTO ligues(numero, nom, sigle, president) VALUES('".$numéro."', '".$nom."', '".$sigle."', '".$président."')";
+    $SQL = "INSERT INTO ligues(numero, nom, sigle, president) VALUES('".$numero."', '".$nom."', '".$sigle."', '".$president."')";
     
    $rs=$cnx->query($SQL);
    echo 'ok';
