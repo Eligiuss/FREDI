@@ -135,14 +135,38 @@ function creerLigue(){
         var nom = document.getElementById('nom').value;
         var sigle = document.getElementById('sigle').value;
         var president = document.getElementById('president').value;
-        
-        $.ajax({ 
+        if(nom==""|| numero==""||sigle==""||president=="")
+        {
+            alert("Veuillez remplir le(s) champ(s) manquant(s)");
+            return;
+        }
+            $.ajax({ 
             url: 'enrligue.php',
             data:   { 
                         numero: numero,
                         nom: nom,
                         sigle: sigle,
                         president: president
+                    },
+            type: 'POST',
+            success: function(response){
+               if(response=='ok') {
+                   alert('Création effectuée.');
+                   window.location.replace('site.php');
+               } else if (response=='existant') {
+                   alert('Une ligue existe déjà avec ce numéro.');
+                   document.getElementById('numero').value='';
+                   return;
+               }
+            }
+        });
+}
+
+function modifLigue(x){
+    $.ajax({ 
+            url: 'modifLigue.php',
+            data:   {
+                        x: x
                     },
             type: 'POST',
             success: function(response){

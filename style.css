@@ -171,3 +171,12 @@ h5{
 a{
     text-decoration: none;
 }
+
+.suprLigne
+{
+    color:#CC0000;
+    width:20px;
+    height:20px;
+    text-align:center;
+    font-weight:bold;
+}

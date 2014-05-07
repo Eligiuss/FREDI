@@ -1,27 +1,18 @@
 <?php
-    $titre = 'FREDI';
-    include('header.php');
-    session_start();
-    
-    
-    if($_SESSION['login']=="admin")
-    {
-        echo'
-        <a href="creerLigue.php" >
-            <input class="boutonMenu" type="submit" value="Création d\'une ligue"/>
-        </a>';
-    }
-    
     $hote='127.0.0.1';
     $user='root';
     $passwd='';
     $database='ppe';
     $cnx=new mysqli($hote,$user,$passwd,$database);
-
-    $SQL = "SELECT * FROM ligues";
+    
+    session_start();
+    
+    $x = $_POST["x"];
+    
+    $SQL = "SELECT * FROM ligues WHERE numero==.$x.";
     $rs=$cnx->query($SQL);
-        
-    echo"
+    
+     echo"
            <table id='tableLigue'>
                 <tr>
                     <td>
@@ -54,13 +45,7 @@
                     <td>
                         ".$info->president."
                     </td>
-                    <td>
-                         <input class='boutonLigue' type='button' onclick='modifLigue(".$info->numero.")' value='modifier'/>
-                    </td>
-                    <td>
-                         <input class='boutonLigue suprLigne' type='button' onclick='suprLigue()' value='X'/>
-                    </td>
-                </tr>";
+                    </tr>";
     }
     echo"</table>";
 ?>
