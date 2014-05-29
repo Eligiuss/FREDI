@@ -9,7 +9,7 @@
     
     $x = $_POST["x"];
     
-    $SQL = "SELECT * FROM ligues WHERE numero==.$x.";
+    $SQL = "SELECT * FROM ligues WHERE numero ='".$x."' ";
     $rs=$cnx->query($SQL);
     
      echo"

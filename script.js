@@ -162,22 +162,22 @@ function creerLigue(){
         });
 }
 
-function modifLigue(x){
+function modifLigue(id){
     $.ajax({ 
             url: 'modifLigue.php',
             data:   {
-                        x: x
+                       x: id
                     },
             type: 'POST',
             success: function(response){
-               if(response=='ok') {
-                   alert('Création effectuée.');
-                   window.location.replace('site.php');
-               } else if (response=='existant') {
-                   alert('Une ligue existe déjà avec ce numéro.');
-                   document.getElementById('numero').value='';
-                   return;
-               }
+               $('#tableLigue').append(response);
             }
         });
 }
+
+function suprLigue(){
+    
+}
+
+
+
