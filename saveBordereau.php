@@ -77,4 +77,17 @@
     } else {
         header('location: bordereau.php');
     } 
+    $hote='127.0.0.1';
+    $user='root';
+    $passwd='';
+    $database='ppe';
+    $cnx=new mysqli($hote,$user,$passwd,$database);
+    
+    session_start();
+    $mail= $_SESSION["login"];
+    
+    for($i=0; $i<sizeof($_POST["totalFrais"]); $i++){
+    $SQL2 = "INSERT INTO bordereau (mail, Date, Motif, Trajet, KmsParcourus, Cout, Peages, Repas, Hebergement, Total) VALUES('".$mail."', '".$dateFrais[$i]."', '".$motifFrais[$i]."', '".$trajetFrais[$i]."', '".$KmsParcouru[$i]."', '".$coutFrais[$i]."', '".$peagesFrais[$i]."', '".$repasFrais[$i]."', '".$hebergementFrais[$i]."', '".$totalFrais[$i]."')";
+        $rs2=$cnx->query($SQL2);
+    }
 ?>

@@ -1,4 +1,4 @@
-<?php
+    <?php
     $hote='127.0.0.1';
     $user='root';
     $passwd='';
@@ -7,45 +7,17 @@
     
     session_start();
     
-    $x = $_POST["x"];
+    $id = $_POST["id"];
+    $numero = $_POST["numero"];
+    $nom = $_POST["nom"];
+    $sigle = $_POST["sigle"];
+    $president = $_POST["president"];
     
-    $SQL = "SELECT * FROM ligues WHERE numero ='".$x."' ";
+    $SQL = "UPDATE ligues
+            SET nom='".$nom."',
+                sigle='".$sigle."',
+                president='".$president."'
+            WHERE numero = '".$id."'; ";
+    
     $rs=$cnx->query($SQL);
-    
-     echo"
-           <table id='tableLigue'>
-                <tr>
-                    <td>
-                        N°
-                    </td>
-                    <td>
-                        Nom
-                    </td>
-                    <td>
-                        Sigle
-                    </td>
-                    <td>
-                        President
-                    </td>
-                </tr>
-                
-        ";
-    while($info = $rs->fetch_object()) {
-        echo" 
-                <tr>
-                    <td>
-                        ".$info->numero."
-                    </td>
-                    <td>
-                        ".$info->numero."
-                    </td>
-                    <td>
-                        ".$info->sigle."
-                    </td>
-                    <td>
-                        ".$info->president."
-                    </td>
-                    </tr>";
-    }
-    echo"</table>";
 ?>

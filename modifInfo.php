@@ -8,12 +8,11 @@
     session_start();
     $mail = $_SESSION["login"];
     
-    $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
-    $adresse = $_POST["adresse"];
-    $codepostal = $_POST["codepostal"];
-    $ville = $_POST["ville"];
-    //$club = $_POST["club"];
+    $nom = $cnx->real_escape_string($_POST["nom"]);
+    $prenom = $cnx->real_escape_string($_POST["prenom"]);
+    $adresse = $cnx->real_escape_string($_POST["adresse"]);
+    $codepostal = $cnx->real_escape_string($_POST["codepostal"]);
+    $ville = $cnx->real_escape_string($_POST["ville"]);
 
     $SQL = "UPDATE demandeurs
             SET nom='".$nom."',

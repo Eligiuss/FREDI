@@ -22,9 +22,6 @@
         $Adresse=$info->adresse;
         $CodeP=$info->codepostal;
         $Ville=$info->ville;
-        $Club="";
-        $Nlicence="";
-        $NLigue="";
     }
         
     echo'
@@ -59,24 +56,6 @@
                             <td>Ville</td>
                             <td>
                                     <input class="param" id="ville" value="'.$Ville.'">
-                            </td>
-                    </tr>
-                    <tr>
-                            <td>Club</td>
-                            <td>
-                                    <input class="param" type="text" id="club" value="'.$Club.'">
-                            </td>
-                    </tr>
-                    <tr>
-                            <td>N° Licence</td>
-                            <td>
-                                    <input class="param" type="text" id="licence" value="'.$Nlicence.'">
-                            </td>
-                    </tr>
-                    <tr>
-                            <td>N° Ligue</td>
-                            <td>
-                                    <input class="param" type="text" id="ligue" value="'.$NLigue.'">
                             </td>
                     </tr>
                     <tr>

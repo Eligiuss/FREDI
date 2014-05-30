@@ -95,6 +95,7 @@ function addLine(){
                                                     '<td><input type="text" class="inputTableau" name="hebergementFrais[]"></td>'+
                                                     '<td><input type="text" class="inputTableau" name="totalFrais[]"></td>'+
                                                     '<td><input type="button" class="deleteButton"/></td>'+
+                                                    '<td><input type="button" value="enregistré ligne" onclick="enrligne()"/></td>'+
                                                  '</tr>');
 												 
     $('.deleteButton').click(function(){
@@ -108,7 +109,6 @@ function modifInfo(){
         var adresse = document.getElementById('adresse').value;
         var codepostal = document.getElementById('codepostal').value;
         var ville = document.getElementById('ville').value;
-        var club = document.getElementById('club').value;
         
         $.ajax({ 
             url: 'modifInfo.php',
@@ -117,8 +117,7 @@ function modifInfo(){
                         prenom: prenom,
                         adresse: adresse,
                         codepostal: codepostal,
-                        ville: ville,
-                        club: club,
+                        ville: ville
                     },
             type: 'POST',
             success: function(response){
@@ -163,10 +162,19 @@ function creerLigue(){
 }
 
 function modifLigue(id){
+        var numero = document.getElementsByName('numero')[id].value;
+        var nom = document.getElementsByName('nom')[id].value;
+        var sigle = document.getElementsByName('sigle')[id].value;
+        var president = document.getElementsByName('president')[id].value;
+        
     $.ajax({ 
             url: 'modifLigue.php',
             data:   {
-                       x: id
+                       id: id,
+                       numero: numero,
+                       nom: nom,
+                       sigle: sigle,
+                       president: president
                     },
             type: 'POST',
             success: function(response){
@@ -179,5 +187,85 @@ function suprLigue(){
     
 }
 
+function enrAdehant(){
+        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom').value;
+        var Sexe = document.getElementById('Sexe').value;
+        var dateDeNaissance = document.getElementById('dateDeNaissance').value;
+        var adresse = document.getElementById('adresse').value;
+        var codepostal = document.getElementById('codepostal').value;
+        var ville = document.getElementById('ville').value;
+        var ligueSportive = document.getElementById('ligueSportive').value;
+        var numLicence = document.getElementById('numLicence').value;
+        $.ajax({ 
+               url: 'enradherant.php',
+               data:   { 
+                           nom: nom,
+                           prenom: prenom,
+                           Sexe: Sexe,
+                           dateDeNaissance: dateDeNaissance,
+                           adresse: adresse,
+                           codepostal: codepostal,
+                           ville: ville,
+                           ligueSportive: ligueSportive,
+                           numLicence: numLicence
+                       },
+               type: 'POST',
+               success: function(response){
+                  if(response=="ok") {
+                      alert('Modifications effectuées.');
+                      window.location.replace('site.php');
+                  }
+               }
+           });
+}
 
+function modiftarif(){
+    var tarif = document.getElementById('tarif').value;
+    $.ajax({ 
+               url: 'enrtarif.php',
+               data:   { 
+                           tarif: tarif,
+                       },
+               type: 'POST',
+               success: function(response){
+                  if(response=="ok") {
+                      alert('Modifications effectuées.');
+                      window.location.replace('site.php');
+                  }
+               }
+           });
+}
 
+function enrligne(){
+        var peagesFrais = document.getElementsByName('peagesFrais[]')[0].value;
+        var repasFrais = document.getElementsByName('repasFrais[]')[0].value;
+        var hebergementFrais = document.getElementsByName('hebergementFrais[]')[0].value;
+        var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
+        var dateFrais = document.getElementsByName('dateFrais[]')[0].value;
+        var motifFrais = document.getElementsByName('motifFrais[]')[0].value;
+        var trajetFrais = document.getElementsByName('trajetFrais[]')[0].value;
+        var coutFrais = document.getElementsByName('coutFrais[]')[0].value;
+        var totalFrais = document.getElementsByName('totalFrais[]')[0].value;
+           $.ajax({ 
+               url: 'enrligne.php',
+               data:   { 
+                           peagesFrais: peagesFrais,
+                           repasFrais: repasFrais,
+                           hebergementFrais: hebergementFrais,
+                           KmsParcouru: KmsParcouru,
+                           dateFrais: dateFrais,
+                           motifFrais: motifFrais,
+                           trajetFrais: trajetFrais,
+                           coutFrais: coutFrais,
+                           totalFrais: totalFrais
+                       },
+               type: 'POST',
+               success: function(response){
+                  if(response=="ok") {
+                      alert('Modifications effectuées.');
+                      window.location.replace('site.php');
+                  }
+               }
+           });
+}

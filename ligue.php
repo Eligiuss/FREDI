@@ -21,7 +21,7 @@
     $SQL = "SELECT * FROM ligues";
     $rs=$cnx->query($SQL);
         
-    echo"
+    echo"<div>
            <table id='tableLigue'>
                 <tr>
                     <td>
@@ -43,16 +43,16 @@
         echo" 
                 <tr>
                     <td>
-                        ".$info->numero."
+                        <input type='text' name='numero' value='".$info->numero."'>
                     </td>
                     <td>
-                        ".$info->numero."
+                        <input type='text' name='nom' value='".$info->nom."'>
                     </td>
                     <td>
-                        ".$info->sigle."
+                        <input type='text' name='sigle' value='".$info->sigle."'>
                     </td>
                     <td>
-                        ".$info->president."
+                        <input type='text' name='president' value='".$info->president."'>
                     </td>
                     <td>
                          <input class='boutonLigue' type='button' onclick='modifLigue(".$info->numero.")' value='modifier'/>
@@ -62,5 +62,5 @@
                     </td>
                 </tr>";
     }
-    echo"</table>";
+    echo"</table> </div>";
 ?>
