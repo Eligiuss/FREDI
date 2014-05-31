@@ -18,7 +18,7 @@
         </a>
         <br/><br/>
         <a href="adherent.php" >
-            <input class="boutonMenu" type="submit" value="Vous êtes adherents? cliquez ici"/>
+            <input class="boutonMenu" type="submit" value="Vous êtes adhérent? cliquez ici"/>
         </a>
         <br/><br/>
         <?php
@@ -34,7 +34,7 @@
                 </a>
                 <br/><br/>
                 <a href="import.php" >
-                    <input class="boutonMenu" type="submit" value="Importer adhérant"/>
+                    <input class="boutonMenu" type="submit" value="Importer adhérent"/>
                 </a>';
             }
         ?>

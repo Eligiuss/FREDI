@@ -129,7 +129,7 @@
                                                     <td><input class="inputTableau" type="text" onchange="Calcultotal()" name="hebergementFrais[]" maxlength="10"></td>
                                                     <td><input class="inputTableau" type="text" name="totalFrais[]" maxlength="10"></td>
                                                     <td><input type="button" class="deleteButton"/></td>
-                                                    <td><input type="button" value="enregistré ligne" onclick="enrLigne()" </td>
+                                                    <td><input type="button" id="enrLigne" value="Enregistrer ligne" </td>
                                             </tr>
                                         '; 
                                     } 

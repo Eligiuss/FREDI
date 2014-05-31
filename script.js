@@ -95,7 +95,7 @@ function addLine(){
                                                     '<td><input type="text" class="inputTableau" name="hebergementFrais[]"></td>'+
                                                     '<td><input type="text" class="inputTableau" name="totalFrais[]"></td>'+
                                                     '<td><input type="button" class="deleteButton"/></td>'+
-                                                    '<td><input type="button" value="enregistré ligne" onclick="enrligne()"/></td>'+
+                                                    '<td><input type="button" value="Enregistrer ligne" onclick="enrligne(1)"/></td>'+
                                                  '</tr>');
 												 
     $('.deleteButton').click(function(){
@@ -104,69 +104,69 @@ function addLine(){
 }
 
 function modifInfo(){
-        var nom = document.getElementById('nom').value;
-        var prenom = document.getElementById('prenom').value;
-        var adresse = document.getElementById('adresse').value;
-        var codepostal = document.getElementById('codepostal').value;
-        var ville = document.getElementById('ville').value;
-        
-        $.ajax({ 
-            url: 'modifInfo.php',
-            data:   { 
-                        nom: nom,
-                        prenom: prenom,
-                        adresse: adresse,
-                        codepostal: codepostal,
-                        ville: ville
-                    },
-            type: 'POST',
-            success: function(response){
-               if(response=="ok") {
-                   alert('Modifications effectuées.');
-                   window.location.replace('site.php');
-               }
-            }
-        });
+    var nom = document.getElementById('nom').value;
+    var prenom = document.getElementById('prenom').value;
+    var adresse = document.getElementById('adresse').value;
+    var codepostal = document.getElementById('codepostal').value;
+    var ville = document.getElementById('ville').value;
+
+    $.ajax({ 
+        url: 'modifInfo.php',
+        data:   { 
+                    nom: nom,
+                    prenom: prenom,
+                    adresse: adresse,
+                    codepostal: codepostal,
+                    ville: ville
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=="ok") {
+               alert('Modifications effectuées.');
+               window.location.replace('site.php');
+           }
+        }
+    });
 }
 
 function creerLigue(){
-        var numero = document.getElementById('numero').value;
-        var nom = document.getElementById('nom').value;
-        var sigle = document.getElementById('sigle').value;
-        var president = document.getElementById('president').value;
-        if(nom==""|| numero==""||sigle==""||president=="")
-        {
-            alert("Veuillez remplir le(s) champ(s) manquant(s)");
-            return;
+    var numero = document.getElementById('numero').value;
+    var nom = document.getElementById('nom').value;
+    var sigle = document.getElementById('sigle').value;
+    var president = document.getElementById('president').value;
+    if(nom==""|| numero==""||sigle==""||president=="")
+    {
+        alert("Veuillez remplir le(s) champ(s) manquant(s)");
+        return;
+    }
+        $.ajax({ 
+        url: 'enrligue.php',
+        data:   { 
+                    numero: numero,
+                    nom: nom,
+                    sigle: sigle,
+                    president: president
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=='ok') {
+               alert('Création effectuée.');
+               window.location.replace('ligue.php');
+           } else if (response=='existant') {
+               alert('Une ligue existe déjà avec ce numéro.');
+               document.getElementById('numero').value='';
+               return;
+           }
         }
-            $.ajax({ 
-            url: 'enrligue.php',
-            data:   { 
-                        numero: numero,
-                        nom: nom,
-                        sigle: sigle,
-                        president: president
-                    },
-            type: 'POST',
-            success: function(response){
-               if(response=='ok') {
-                   alert('Création effectuée.');
-                   window.location.replace('ligue.php');
-               } else if (response=='existant') {
-                   alert('Une ligue existe déjà avec ce numéro.');
-                   document.getElementById('numero').value='';
-                   return;
-               }
-            }
-        });
+    });
 }
 
 function modifLigue(id){
-        var numero = document.getElementsByName('numero')[id].value;
-        var nom = document.getElementsByName('nom')[id].value;
-        var sigle = document.getElementsByName('sigle')[id].value;
-        var president = document.getElementsByName('president')[id].value;
-        
+    var numero = document.getElementsByName('numero')[id].value;
+    var nom = document.getElementsByName('nom')[id].value;
+    var sigle = document.getElementsByName('sigle')[id].value;
+    var president = document.getElementsByName('president')[id].value;
+
     $.ajax({ 
             url: 'modifLigue.php',
             data:   {
@@ -184,125 +184,138 @@ function modifLigue(id){
 }
 
 function suprLigue(id){
-        $.ajax({ 
-            url: 'suprLigue.php',
-            data:   {
-                       id: id
-                    },
-            type: 'POST',
-            success: function(response){
-               if(response=='ok') {
-                   alert('supression effectuée.');
-                   window.location.replace('site.php');
-               } else if (response=='existant') {
-                   alert('Une ligue existe déjà avec ce numéro.');
-                   document.getElementById('numero').value='';
-                   return;
-               }
-            }
-        });
+    $.ajax({ 
+        url: 'suprLigue.php',
+        data:   {
+                   id: id
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=='ok') {
+               alert('supression effectuée.');
+               window.location.replace('site.php');
+           } else if (response=='existant') {
+               alert('Une ligue existe déjà avec ce numéro.');
+               document.getElementById('numero').value='';
+               return;
+           }
+        }
+    });
 }
 
 function enrAdehant(){
-        var nom = document.getElementById('nom').value;
-        var prenom = document.getElementById('prenom').value;
-        var Sexe = document.getElementById('Sexe').value;
-        var dateDeNaissance = document.getElementById('dateDeNaissance').value;
-        var adresse = document.getElementById('adresse').value;
-        var codepostal = document.getElementById('codepostal').value;
-        var ville = document.getElementById('ville').value;
-        var ligueSportive = document.getElementById('ligueSportive').value;
-        var numLicence = document.getElementById('numLicence').value;
-        $.ajax({ 
-               url: 'enradherant.php',
-               data:   { 
-                           nom: nom,
-                           prenom: prenom,
-                           Sexe: Sexe,
-                           dateDeNaissance: dateDeNaissance,
-                           adresse: adresse,
-                           codepostal: codepostal,
-                           ville: ville,
-                           ligueSportive: ligueSportive,
-                           numLicence: numLicence
-                       },
-               type: 'POST',
-               success: function(response){
-                  if(response=="ok") {
-                      alert('Modifications effectuées.');
-                      window.location.replace('site.php');
-                  }
-               }
-           });
+    var nom = document.getElementById('nom').value;
+    var prenom = document.getElementById('prenom').value;
+    var Sexe = document.getElementById('Sexe').value;
+    var dateDeNaissance = document.getElementById('dateDeNaissance').value;
+    var adresse = document.getElementById('adresse').value;
+    var codepostal = document.getElementById('codepostal').value;
+    var ville = document.getElementById('ville').value;
+    var ligueSportive = document.getElementById('ligueSportive').value;
+    var numLicence = document.getElementById('numLicence').value;
+    $.ajax({ 
+           url: 'enradherant.php',
+           data:   { 
+                       nom: nom,
+                       prenom: prenom,
+                       Sexe: Sexe,
+                       dateDeNaissance: dateDeNaissance,
+                       adresse: adresse,
+                       codepostal: codepostal,
+                       ville: ville,
+                       ligueSportive: ligueSportive,
+                       numLicence: numLicence
+                   },
+           type: 'POST',
+           success: function(response){
+              if(response=="ok") {
+                  alert('Modifications effectuées.');
+                  window.location.replace('site.php');
+              }
+           }
+       });
 }
 
 function modiftarif(){
     var tarif = document.getElementById('tarif').value;
     $.ajax({ 
-               url: 'enrtarif.php',
-               data:   { 
-                           tarif: tarif,
-                       },
-               type: 'POST',
-               success: function(response){
-                  if(response=="ok") {
-                      alert('Modifications effectuées.');
-                      window.location.replace('site.php');
-                  }
-               }
-           });
+        url: 'enrtarif.php',
+        data:   { 
+                    tarif: tarif,
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=="ok") {
+               alert('Modifications effectuées.');
+               window.location.replace('site.php');
+           } else {
+               alert(response);
+           }
+        }
+    });
 }
 
-function enrligne(id){
-        var peagesFrais = document.getElementsByName('peagesFrais[]')[id].value;
-        var repasFrais = document.getElementsByName('repasFrais[]')[id].value;
-        var hebergementFrais = document.getElementsByName('hebergementFrais[]')[id].value;
-        var KmsParcouru = document.getElementsByName('kmFrais[]')[id].value;
-        var dateFrais = document.getElementsByName('dateFrais[]')[id].value;
-        var motifFrais = document.getElementsByName('motifFrais[]')[id].value;
-        var trajetFrais = document.getElementsByName('trajetFrais[]')[id].value;
-        var coutFrais = document.getElementsByName('coutFrais[]')[id].value;
-        var totalFrais = document.getElementsByName('totalFrais[]')[id].value;
-           $.ajax({ 
-               url: 'enrligne.php',
-               data:   { 
-                           peagesFrais: peagesFrais,
-                           repasFrais: repasFrais,
-                           hebergementFrais: hebergementFrais,
-                           KmsParcouru: KmsParcouru,
-                           dateFrais: dateFrais,
-                           motifFrais: motifFrais,
-                           trajetFrais: trajetFrais,
-                           coutFrais: coutFrais,
-                           totalFrais: totalFrais
-                       },
-               type: 'POST',
-               success: function(response){
-                  if(response=="ok") {
-                      alert('Modifications effectuées.');
-                      window.location.replace('site.php');
-                  }
-               }
-           });
+
+
+$('td').click(function() {
+    var myCol = $(this).index();
+    var $tr = $(this).closest('tr');
+    var myRow = $tr.index();
+});
+
+
+
+function enrLigne(id){
+    var peagesFrais = document.getElementsByName('peagesFrais[]')[id].value;
+    var repasFrais = document.getElementsByName('repasFrais[]')[id].value;
+    var hebergementFrais = document.getElementsByName('hebergementFrais[]')[id].value;
+    var KmsParcouru = document.getElementsByName('kmFrais[]')[id].value;
+    var dateFrais = document.getElementsByName('dateFrais[]')[id].value;
+    var motifFrais = document.getElementsByName('motifFrais[]')[id].value;
+    var trajetFrais = document.getElementsByName('trajetFrais[]')[id].value;
+    var coutFrais = document.getElementsByName('coutFrais[]')[id].value;
+    var totalFrais = document.getElementsByName('totalFrais[]')[id].value;
+       
+    $.ajax({ 
+        url: 'enrligne.php',
+        data:   { 
+                    peagesFrais: peagesFrais,
+                    repasFrais: repasFrais,
+                    hebergementFrais: hebergementFrais,
+                    KmsParcouru: KmsParcouru,
+                    dateFrais: dateFrais,
+                    motifFrais: motifFrais,
+                    trajetFrais: trajetFrais,
+                    coutFrais: coutFrais,
+                    totalFrais: totalFrais
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=="ok") {
+               alert('Modifications effectuées.');
+               window.location.replace('site.php');
+           }
+        }
+    });
 }
 
 function Calcul(){
-                var nbLignes = $('#tableauBordereau tr').length;
-                    var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
-                    var Tarif = document.getElementById('tarif').value;
-                    document.getElementsByName("coutFrais[]")[0].value = KmsParcouru*Tarif;
-            }
+    var nbLignes = $('#tableauBordereau tr').length;
+        var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
+        var Tarif = document.getElementById('tarif').value;
+        document.getElementsByName("coutFrais[]")[0].value = KmsParcouru*Tarif;
+}
             
-            function Calcultotal(){
-                var nbLignes = $('#tableauBordereau tr').length;
-                    var coutFrais = parseInt(document.getElementsByName('coutFrais[]')[0].value);
-                    if(isNaN(coutFrais))
-                    {
-                        coutFrais==0;
-                    }
-                    var peagesFrais = parseInt(document.getElementsByName('peagesFrais[]')[0].value);
-                    var repasFrais = parseInt(document.getElementsByName('repasFrais[]')[0].value);
-                    var hebergementFrais = parseInt(document.getElementsByName('hebergementFrais[]')[0].value);
-                    var calcul = parseInt(coutFrais+peagesFrais+repasFrais+hebergementFrais);
-                    document.getElementsByName("totalFrais[]")[0].value = calcul;
-            }
+function Calcultotal(){
+    var nbLignes = $('#tableauBordereau tr').length;
+    var coutFrais = parseInt(document.getElementsByName('coutFrais[]')[0].value);
+    if(isNaN(coutFrais))
+    {
+        coutFrais==0;
+    }
+    var peagesFrais = parseInt(document.getElementsByName('peagesFrais[]')[0].value);
+    var repasFrais = parseInt(document.getElementsByName('repasFrais[]')[0].value);
+    var hebergementFrais = parseInt(document.getElementsByName('hebergementFrais[]')[0].value);
+    var calcul = parseInt(coutFrais+peagesFrais+repasFrais+hebergementFrais);
+    document.getElementsByName("totalFrais[]")[0].value = calcul;
+}
