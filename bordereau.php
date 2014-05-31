@@ -111,7 +111,7 @@
                                             <td><input class="inputTableau" type="text" value="'.$Peages.'" onchange="Calcultotal()" name="peagesFrais['.$x.']" maxlength="10"></td>
                                             <td><input class="inputTableau" type="text" value="'.$Repas.'" onchange="Calcultotal()" name="repasFrais['.$x.']" maxlength="10"></td>
                                             <td><input class="inputTableau" type="text" value="'.$Hebergement.'" onchange="Calcultotal()" name="hebergementFrais['.$x.']" maxlength="10"></td>
-                                            <td><input class="inputTableau" type="text" value="'.$Total.'" name="totalFrais[]" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Total.'" name="totalFrais['.$x.']" maxlength="10"></td>
                                             <td><input type="button" class="deleteButton"/></td>
                                         </tr>';
                                     $x++;
