@@ -78,8 +78,8 @@ function passRequest(){
 }
 
 function addLine(){
-    var nbLignes = $('#tableauBordereau tr').length;
-    if(nbLignes == 11){ //9 'vraies' lignes + la première et la dernière, sur lesquelles on n'entre pas d'infos
+    var nbLignes = $('#tableauBordereau tr').length - 2;
+    if(nbLignes == 9){
         alert('Vous avez atteint le nombre maximum de lignes !\nVeuillez en supprimer avant d\'en ajouter à nouveau.');
         return;
     }
@@ -93,15 +93,20 @@ function addLine(){
                                                     '<td><input type="text" class="inputTableau" name="peagesFrais[]"></td>'+
                                                     '<td><input type="text" class="inputTableau" name="repasFrais[]"></td>'+
                                                     '<td><input type="text" class="inputTableau" name="hebergementFrais[]"></td>'+
-                                                    '<td><input type="text" class="inputTableau" name="totalFrais[]"></td>'+
+                                                    '<td><input type="text" readonly class="inputTableau" name="totalFrais[]"></td>'+
                                                     '<td><input type="button" class="deleteButton"/></td>'+
-                                                    '<td><input type="button" value="Enregistrer ligne" onclick="enrligne(1)"/></td>'+
                                                  '</tr>');
-												 
-    $('.deleteButton').click(function(){
+    
+    if(nbLignes>1){ //Si il y a plus d'une ligne
+        $('.deleteButton').click(function(){
             $(this).closest("tr").remove();
-    });
+            nbLignes=nbLignes-1;
+        });
+    } else {
+        $('.deleteButton').click(function(){});
+    }
 }
+
 
 function modifInfo(){
     var nom = document.getElementById('nom').value;
@@ -255,48 +260,17 @@ function modiftarif(){
     });
 }
 
-
-
-$('td').click(function() {
-    var myCol = $(this).index();
-    var $tr = $(this).closest('tr');
-    var myRow = $tr.index();
-});
-
-
-
-function enrLigne(id){
-    var peagesFrais = document.getElementsByName('peagesFrais[]')[id].value;
-    var repasFrais = document.getElementsByName('repasFrais[]')[id].value;
-    var hebergementFrais = document.getElementsByName('hebergementFrais[]')[id].value;
-    var KmsParcouru = document.getElementsByName('kmFrais[]')[id].value;
-    var dateFrais = document.getElementsByName('dateFrais[]')[id].value;
-    var motifFrais = document.getElementsByName('motifFrais[]')[id].value;
-    var trajetFrais = document.getElementsByName('trajetFrais[]')[id].value;
-    var coutFrais = document.getElementsByName('coutFrais[]')[id].value;
-    var totalFrais = document.getElementsByName('totalFrais[]')[id].value;
-       
-    $.ajax({ 
-        url: 'enrligne.php',
-        data:   { 
-                    peagesFrais: peagesFrais,
-                    repasFrais: repasFrais,
-                    hebergementFrais: hebergementFrais,
-                    KmsParcouru: KmsParcouru,
-                    dateFrais: dateFrais,
-                    motifFrais: motifFrais,
-                    trajetFrais: trajetFrais,
-                    coutFrais: coutFrais,
-                    totalFrais: totalFrais
-                },
-        type: 'POST',
-        success: function(response){
-           if(response=="ok") {
-               alert('Modifications effectuées.');
-               window.location.replace('site.php');
-           }
-        }
-    });
+window.onload=function(){
+    var nbLignes = $('#tableauBordereau tr').length - 2;
+    
+    if(nbLignes>1){ //Si il y a plus d'une ligne
+        $('.deleteButton').click(function(){
+            $(this).closest("tr").remove();
+            nbLignes=nbLignes-1;
+        });
+    } else {
+        $('.deleteButton').click(function(){});
+    }
 }
 
 function Calcul(){
@@ -318,4 +292,52 @@ function Calcultotal(){
     var hebergementFrais = parseInt(document.getElementsByName('hebergementFrais[]')[0].value);
     var calcul = parseInt(coutFrais+peagesFrais+repasFrais+hebergementFrais);
     document.getElementsByName("totalFrais[]")[0].value = calcul;
+}
+
+
+function enrLignes(){
+    var nbLignes = $('#tableauBordereau tr').length;
+    var peagesFrais=[];
+    var repasFrais=[];
+    var hebergementFrais=[];
+    var KmsParcouru=[];
+    var dateFrais=[];
+    var motifFrais=[];
+    var trajetFrais=[];
+    var coutFrais=[];
+    var totalFrais=[];
+    
+    for(var i=0; i<nbLignes-2;i++){
+        peagesFrais.push(document.getElementsByName('peagesFrais[]')[i].value);
+        repasFrais.push(document.getElementsByName('repasFrais[]')[i].value);
+        hebergementFrais.push(document.getElementsByName('hebergementFrais[]')[i].value);
+        KmsParcouru.push(document.getElementsByName('kmFrais[]')[i].value);
+        dateFrais.push(document.getElementsByName('dateFrais[]')[i].value);
+        motifFrais.push(document.getElementsByName('motifFrais[]')[i].value);
+        trajetFrais.push(document.getElementsByName('trajetFrais[]')[i].value);
+        coutFrais.push(document.getElementsByName('coutFrais[]')[i].value);
+        totalFrais.push(document.getElementsByName('totalFrais[]')[i].value);
+    }
+    
+    $.ajax({ 
+        url: 'enrligne.php',
+        data:   { 
+                    peagesFrais: peagesFrais,
+                    repasFrais: repasFrais,
+                    hebergementFrais: hebergementFrais,
+                    KmsParcouru: KmsParcouru,
+                    dateFrais: dateFrais,
+                    motifFrais: motifFrais,
+                    trajetFrais: trajetFrais,
+                    coutFrais: coutFrais,
+                    totalFrais: totalFrais
+                },
+        type: 'POST',
+        success: function(response){
+           if(response=="ok") {
+               alert('Modifications effectuées.');
+               window.location.replace('bordereau.php');
+           }
+        }
+    });
 }
