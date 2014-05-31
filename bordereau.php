@@ -5,28 +5,6 @@
 	<link type="text/css" href="style.css" rel="stylesheet"/>
 	<script src="jquery.js"></script>
 	<script src="script.js"></script>
-        <script>
-            function Calcul(){
-                var nbLignes = $('#tableauBordereau tr').length;
-                    var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
-                    var Tarif = document.getElementById('Tarif').value;
-                    document.getElementsByName("coutFrais[]")[0].value = KmsParcouru*Tarif;
-            }
-            
-            function Calcultotal(){
-                var nbLignes = $('#tableauBordereau tr').length;
-                    var coutFrais = parseInt(document.getElementsByName('coutFrais[]')[0].value);
-                    if(isNaN(coutFrais))
-                    {
-                        coutFrais==0;
-                    }
-                    var peagesFrais = parseInt(document.getElementsByName('peagesFrais[]')[0].value);
-                    var repasFrais = parseInt(document.getElementsByName('repasFrais[]')[0].value);
-                    var hebergementFrais = parseInt(document.getElementsByName('hebergementFrais[]')[0].value);
-                    var calcul = parseInt(coutFrais+peagesFrais+repasFrais+hebergementFrais);
-                    document.getElementsByName("totalFrais[]")[0].value = calcul;
-            }
-        </script>
 </head>
     
 <?php
@@ -48,6 +26,12 @@
         $CodeP=$info->codepostal;
         $Ville=$info->ville;
     }
+    $SQL1 = "SELECT * FROM tarif";
+    $rs1=$cnx->query($SQL1);
+    while($info = $rs1->fetch_object()) {
+        $tarif=$info->tarif;
+    }
+    
     
 ?>
 <body>
@@ -71,11 +55,11 @@
             <br/>
 
             <h5>Frais de déplacement</h5>
-            <center>Tarif kilométrique appliqué pour le remboursement : <input type="text" id="Tarif" value="0.28" disabled="disabled"/></center>
+            <center>Tarif kilométrique appliqué pour le remboursement : <input type="text" id="tarif" value="<?php echo$tarif;?>" disabled="disabled"/></center>
             <table id="tableauBordereau">
                 <tr>
                     <td>
-                        Date jj/mm/aaaa
+                        Date aaaa/mm/jj
                     </td>
                     <td>
                         Motif
@@ -103,20 +87,53 @@
                     </td>
                     <td></td>
                 </tr>
-				
-				<tr>
-					<td><input class="inputTableau" type="text" name="dateFrais[]" maxlength="10"></td>
-					<td><input class="inputTableau" type="text" name="motifFrais[]" maxlength="22"></td>
-					<td><input class="inputTableau" type="text" name="trajetFrais[]" maxlength="20"></td>
-					<td><input class="inputTableau" type="text" onchange="Calcul()" name="kmFrais[]" maxlength="10"></td>
-					<td><input class="inputTableau" type="text" onchange="Calcultotal()" name="coutFrais[]" maxlength="10"</td>
-					<td><input class="inputTableau" type="text" onchange="Calcultotal()" name="peagesFrais[]" maxlength="10"></td>
-					<td><input class="inputTableau" type="text" onchange="Calcultotal()" name="repasFrais[]" maxlength="10"></td>
-					<td><input class="inputTableau" type="text" onchange="Calcultotal()" name="hebergementFrais[]" maxlength="10"></td>
-					<td><input class="inputTableau" type="text" name="totalFrais[]" maxlength="10"></td>
-					<td><input type="button" class="deleteButton"/></td>
-                                        <td><input type="button" value="enregistré ligne" onclick="enrligue()"></td>
-				 </tr>
+                                <?php
+                                    $SQL = "SELECT * FROM bordereau WHERE mail= '".$Mail."'";
+                                    $rs=$cnx->query($SQL);
+                                    $x=1;
+                                    while($info = $rs->fetch_object()) {
+                                    $Date=$info->Date;
+                                    $Motif=$info->Motif;
+                                    $Trajet=$info->Trajet;
+                                    $KmsParcourus=$info->KmsParcourus;
+                                    $Cout=$info->Cout;
+                                    $Peages=$info->Peages;
+                                    $Repas=$info->Repas;
+                                    $Hebergement=$info->Hebergement;
+                                    $Total=$info->Total;
+                                    echo'
+                                        <tr>
+                                            <td><input class="inputTableau" type="text" value="'.$Date.'" name="dateFrais['.$x.']" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Motif.'" name="motifFrais['.$x.']" maxlength="22"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Trajet.'" name="trajetFrais['.$x.']" maxlength="20"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$KmsParcourus.'" onchange="Calcul()" name="kmFrais['.$x.']" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Cout.'" onchange="Calcultotal()" name="coutFrais['.$x.']" maxlength="10"</td>
+                                            <td><input class="inputTableau" type="text" value="'.$Peages.'" onchange="Calcultotal()" name="peagesFrais['.$x.']" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Repas.'" onchange="Calcultotal()" name="repasFrais['.$x.']" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Hebergement.'" onchange="Calcultotal()" name="hebergementFrais['.$x.']" maxlength="10"></td>
+                                            <td><input class="inputTableau" type="text" value="'.$Total.'" name="totalFrais[]" maxlength="10"></td>
+                                            <td><input type="button" class="deleteButton"/></td>
+                                        </tr>';
+                                    $x++;
+                                    }
+                                    if($x<=9){
+                                        echo'
+                                            <tr>
+                                                    <td><input class="inputTableau" type="text" name="dateFrais[]" maxlength="10"></td>
+                                                    <td><input class="inputTableau" type="text" name="motifFrais[]" maxlength="22"></td>
+                                                    <td><input class="inputTableau" type="text" name="trajetFrais[]" maxlength="20"></td>
+                                                    <td><input class="inputTableau" type="text" onchange="Calcul()" name="kmFrais[]" maxlength="10"></td>
+                                                    <td><input class="inputTableau" type="text" onchange="Calcultotal()" name="coutFrais[]" maxlength="10"</td>
+                                                    <td><input class="inputTableau" type="text" onchange="Calcultotal()" name="peagesFrais[]" maxlength="10"></td>
+                                                    <td><input class="inputTableau" type="text" onchange="Calcultotal()" name="repasFrais[]" maxlength="10"></td>
+                                                    <td><input class="inputTableau" type="text" onchange="Calcultotal()" name="hebergementFrais[]" maxlength="10"></td>
+                                                    <td><input class="inputTableau" type="text" name="totalFrais[]" maxlength="10"></td>
+                                                    <td><input type="button" class="deleteButton"/></td>
+                                                    <td><input type="button" value="enregistré ligne" onclick="enrLigne()" </td>
+                                            </tr>
+                                        '; 
+                                    } 
+                                ?>
                 
                 <tr>
                     <td colspan="8">Montant total des frais de déplacement</td>

@@ -21,5 +21,8 @@
     
    $SQL2 = "INSERT INTO ligues(numero, nom, sigle, president) VALUES('".$numero."', '".$nom."', '".$sigle."', '".$president."')";
    $rs2=$cnx->query($SQL2);
+   if($rs2)
+   {
    echo 'ok';
+   }
 ?>

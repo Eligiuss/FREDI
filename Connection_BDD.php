@@ -5,4 +5,5 @@
     $passwd='';
     $database='ppe';
     $cnx=new mysqli($hote,$user,$passwd,$database);
+    $cnx->set_charset("utf8");
 ?>

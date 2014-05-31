@@ -151,7 +151,7 @@ function creerLigue(){
             success: function(response){
                if(response=='ok') {
                    alert('Création effectuée.');
-                   window.location.replace('site.php');
+                   window.location.replace('ligue.php');
                } else if (response=='existant') {
                    alert('Une ligue existe déjà avec ce numéro.');
                    document.getElementById('numero').value='';
@@ -183,8 +183,24 @@ function modifLigue(id){
         });
 }
 
-function suprLigue(){
-    
+function suprLigue(id){
+        $.ajax({ 
+            url: 'suprLigue.php',
+            data:   {
+                       id: id
+                    },
+            type: 'POST',
+            success: function(response){
+               if(response=='ok') {
+                   alert('supression effectuée.');
+                   window.location.replace('site.php');
+               } else if (response=='existant') {
+                   alert('Une ligue existe déjà avec ce numéro.');
+                   document.getElementById('numero').value='';
+                   return;
+               }
+            }
+        });
 }
 
 function enrAdehant(){
@@ -237,16 +253,16 @@ function modiftarif(){
            });
 }
 
-function enrligne(){
-        var peagesFrais = document.getElementsByName('peagesFrais[]')[0].value;
-        var repasFrais = document.getElementsByName('repasFrais[]')[0].value;
-        var hebergementFrais = document.getElementsByName('hebergementFrais[]')[0].value;
-        var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
-        var dateFrais = document.getElementsByName('dateFrais[]')[0].value;
-        var motifFrais = document.getElementsByName('motifFrais[]')[0].value;
-        var trajetFrais = document.getElementsByName('trajetFrais[]')[0].value;
-        var coutFrais = document.getElementsByName('coutFrais[]')[0].value;
-        var totalFrais = document.getElementsByName('totalFrais[]')[0].value;
+function enrligne(id){
+        var peagesFrais = document.getElementsByName('peagesFrais[]')[id].value;
+        var repasFrais = document.getElementsByName('repasFrais[]')[id].value;
+        var hebergementFrais = document.getElementsByName('hebergementFrais[]')[id].value;
+        var KmsParcouru = document.getElementsByName('kmFrais[]')[id].value;
+        var dateFrais = document.getElementsByName('dateFrais[]')[id].value;
+        var motifFrais = document.getElementsByName('motifFrais[]')[id].value;
+        var trajetFrais = document.getElementsByName('trajetFrais[]')[id].value;
+        var coutFrais = document.getElementsByName('coutFrais[]')[id].value;
+        var totalFrais = document.getElementsByName('totalFrais[]')[id].value;
            $.ajax({ 
                url: 'enrligne.php',
                data:   { 
@@ -269,3 +285,24 @@ function enrligne(){
                }
            });
 }
+
+function Calcul(){
+                var nbLignes = $('#tableauBordereau tr').length;
+                    var KmsParcouru = document.getElementsByName('kmFrais[]')[0].value;
+                    var Tarif = document.getElementById('tarif').value;
+                    document.getElementsByName("coutFrais[]")[0].value = KmsParcouru*Tarif;
+            }
+            
+            function Calcultotal(){
+                var nbLignes = $('#tableauBordereau tr').length;
+                    var coutFrais = parseInt(document.getElementsByName('coutFrais[]')[0].value);
+                    if(isNaN(coutFrais))
+                    {
+                        coutFrais==0;
+                    }
+                    var peagesFrais = parseInt(document.getElementsByName('peagesFrais[]')[0].value);
+                    var repasFrais = parseInt(document.getElementsByName('repasFrais[]')[0].value);
+                    var hebergementFrais = parseInt(document.getElementsByName('hebergementFrais[]')[0].value);
+                    var calcul = parseInt(coutFrais+peagesFrais+repasFrais+hebergementFrais);
+                    document.getElementsByName("totalFrais[]")[0].value = calcul;
+            }
