@@ -12,11 +12,12 @@
         </a>';
     }
     
-    $hote='127.0.0.1';
-    $user='root';
-    $passwd='';
-    $database='ppe';
+    $hote='192.168.160.102';
+    $user='user';
+    $passwd='Azerty.123';
+    $database='CEAA_Fredy';
     $cnx=new mysqli($hote,$user,$passwd,$database);
+
 
     $SQL = "SELECT * FROM ligues";
     $rs=$cnx->query($SQL);

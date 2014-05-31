@@ -1,11 +1,8 @@
 <?php
     session_start();
     
-    $hote='127.0.0.1';
-    $user='root';
-    $passwd='';
-    $database='ppe';
-    $cnx=new mysqli($hote,$user,$passwd,$database);
+    include ('Connection_BDD.php');
+
     
     $tarif=$_POST["tarif"];
     

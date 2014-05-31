@@ -32,15 +32,11 @@
 <?php
     $titre='FREDI';
     include('header.php');
+    include ('Connection_BDD.php');
     
     session_start();
     $Mail=$_SESSION["login"];
 
-    $hote='127.0.0.1';
-    $user='root';
-    $passwd='';
-    $database='ppe';
-    $cnx=new mysqli($hote,$user,$passwd,$database);
 
     $SQL = "SELECT * FROM demandeurs WHERE adressemail= '".$Mail."'";
     $rs=$cnx->query($SQL);

@@ -77,11 +77,8 @@
     } else {
         header('location: bordereau.php');
     } 
-    $hote='127.0.0.1';
-    $user='root';
-    $passwd='';
-    $database='ppe';
-    $cnx=new mysqli($hote,$user,$passwd,$database);
+    include ('Connection_BDD.php');
+
     
     session_start();
     $mail= $_SESSION["login"];
